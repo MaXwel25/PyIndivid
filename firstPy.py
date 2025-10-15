@@ -1,11 +1,11 @@
 print("Введите строку: ")
-str1 = "fhb5kbfыshfm."
-# str1 = input()
+# str1 = "fhb5kbfыshfm."
+str1 = input()
 if not str1.endswith("."):
     print("Error: zero not found!")
     exit()
 else:
-    str = str1.split(".")[0]
+    str1 = str1.split(".")[0]
 
 alfavit = "abcdefghijklmnopqrstuvwxyz"
 let = ""
