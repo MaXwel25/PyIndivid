@@ -1,6 +1,6 @@
 print("Введите строку: ")
-# str1 = "fhb5kbfыshfm."
 str1 = input()
+# str1 = "fhb5kbfыshfm."
 if not str1.endswith("."):
     print("Error: zero not found!")
     exit()
