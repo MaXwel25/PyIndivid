@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Археологическая База Данных</title>
+    <style>
+        body { font-family: Arial, sans-serif;
+                margin: 20px; }
+        table { border-collapse: collapse;
+                margin: 20px 0;
+                width: 100%; }
+        td, th { border: 1px solid #ddd;
+                 padding: 8px;
+                 text-align: left; }
+        th { background-color: #f2f2f2; }
+        .form-section { background: #f9f9f9;
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 5px; }
+        input, select, button { padding: 8px;
+                                margin: 5px; }
+        button { background: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer; }
+        a { color: #2196F3;
+            text-decoration: none;
+            padding: 10px; 
+            background: #ff9800;
+            color: white;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Археологическая база данных</h1>
+
+    <div class="form-section">
+        <h3>Добавить археологический сайт</h3>
+        <form action="/add_site" method="post">
+            <input type="text" name="name" placeholder="Название сайта" required>
+            <input type="text" name="location" placeholder="Местоположение" required>
+            <input type="text" name="period" placeholder="Период" required>
+            <button type="submit">Добавить сайт</button>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h3>Добавить археолога</h3>
+        <form action="/add_archaeologist" method="post">
+            <input type="text" name="name" placeholder="Имя археолога" required>
+            <input type="text" name="specialization" placeholder="Специализация" required>
+            <input type="number" name="site_id" placeholder="ID сайта" required>
+            <button type="submit">Добавить археолога</button>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h3>Добавить находку</h3>
+        <form action="/add_find" method="post">
+            <input type="text" name="name" placeholder="Название находки" required>
+            <input type="text" name="material" placeholder="Материал" required>
+            <input type="text" name="find_type" placeholder="Тип находки" required>
+            <input type="number" name="archaeologist_id" placeholder="ID археолога" required>
+            <button type="submit">Добавить находку</button>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h3>Экспорт данных</h3>
+        <a href="/export_xml">Экспорт находок (XML)</a>
+    </div>
+
+    <h2>Связанные данные (JOIN)</h2>
+    <table>
+        <tr><th>Сайт</th><th>Местоположение</th><th>Период</th><th>Археолог</th><th>Специализация</th><th>Находка</th><th>Материал</th><th>Тип</th></tr>
+        {% for row in all_data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Археологические сайты</h2>
+    <table>
+        <tr><th>ID</th><th>Название</th><th>Местоположение</th><th>Период</th></tr>
+        {% for site in sites %}
+        <tr>
+            <td>{{ site[0] }}</td>
+            <td>{{ site[1] }}</td>
+            <td>{{ site[2] }}</td>
+            <td>{{ site[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Археологи</h2>
+    <table>
+        <tr><th>ID</th><th>Имя</th><th>Специализация</th><th>ID сайта</th></tr>
+        {% for archaeologist in archaeologists %}
+        <tr>
+            <td>{{ archaeologist[0] }}</td>
+            <td>{{ archaeologist[1] }}</td>
+            <td>{{ archaeologist[2] }}</td>
+            <td>{{ archaeologist[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Находки</h2>
+    <table>
+        <tr><th>ID</th><th>Название</th><th>Материал</th><th>Тип</th><th>ID археолога</th></tr>
+        {% for find in finds %}
+        <tr>
+            <td>{{ find[0] }}</td>
+            <td>{{ find[1] }}</td>
+            <td>{{ find[2] }}</td>
+            <td>{{ find[3] }}</td>
+            <td>{{ find[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
