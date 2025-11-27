@@ -1,39 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Археологическая База Данных</title>
+    <meta charset="UTF-8">
     <style>
-        body { font-family: Arial, sans-serif;
-                margin: 20px; }
-        table { border-collapse: collapse;
-                margin: 20px 0;
-                width: 100%; }
-        td, th { border: 1px solid #ddd;
-                 padding: 8px;
-                 text-align: left; }
-        th { background-color: #f2f2f2; }
-        .form-section { background: #f9f9f9;
-                        padding: 15px;
-                        margin: 10px 0;
-                        border-radius: 5px; }
-        input, select, button { padding: 8px;
-                                margin: 5px; }
-        button { background: #4CAF50;
-                color: white;
-                border: none;
-                cursor: pointer; }
-        a { color: #2196F3;
-            text-decoration: none;
-            padding: 10px; 
-            background: #ff9800;
-            color: white;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 5px; }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.form-section {
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+input, select, button {
+    padding: 8px;
+    margin: 5px;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    color: #2196F3;
+    text-decoration: none;
+    padding: 10px; 
+    background: #ff9800;
+    color: white;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.message { 
+    padding: 10px; 
+    margin: 10px 0; 
+    border-radius: 5px; 
+    border: 1px solid;
+}
+
+.success { 
+    background-color: #d4edda; 
+    color: #155724; 
+    border-color: #c3e6cb; 
+}
+
+.error { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border-color: #f5c6cb; 
+}
     </style>
+    <title>Археологическая База Данных</title>
 </head>
 <body>
     <h1>Археологическая база данных</h1>
+    
+    <!-- Сообщения об ошибках при добавлении археолога -->
+    {% if archaeologist_error %}
+    <div class="message error">
+        Ошибка добавления археолога: {{ error_message }}
+    </div>
+    {% endif %}
+
+    <!-- Сообщения об ошибках при добавлении находки -->
+    {% if find_error %}
+    <div class="message error">
+        Ошибка добавления находки: {{ error_message }}
+    </div>
+    {% endif %}
+    
+    <!-- Сообщения об импорте -->
+    {% if import_success %}
+    <div class="message success">
+        Успешно импортировано {{ imported_count }} артефактов!
+    </div>
+    {% endif %}
+    
+    {% if import_error %}
+    <div class="message error">
+        Ошибка импорта: {{ error_message }}
+    </div>
+    {% endif %}
 
     <div class="form-section">
         <h3>Добавить археологический сайт</h3>
@@ -53,6 +123,11 @@
             <input type="number" name="site_id" placeholder="ID сайта" required>
             <button type="submit">Добавить археолога</button>
         </form>
+        {% if archaeologist_error %}
+        <p style="color: #721c24; font-size: 14px; margin-top: 5px;">
+            Проверьте, что сайт с указанным ID существует в таблице ниже.
+        </p>
+        {% endif %}
     </div>
 
     <div class="form-section">
@@ -64,11 +139,21 @@
             <input type="number" name="archaeologist_id" placeholder="ID археолога" required>
             <button type="submit">Добавить находку</button>
         </form>
+        {% if find_error %}
+        <p style="color: #721c24; font-size: 14px; margin-top: 5px;">
+            Проверьте, что археолог с указанным ID существует в таблице ниже.
+        </p>
+        {% endif %}
     </div>
 
     <div class="form-section">
         <h3>Экспорт данных</h3>
         <a href="/export_xml">Экспорт находок (XML)</a>
+        <h3>Импорт данных (XML)</h3>
+        <form action="/import_xml" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xml" required>
+            <button type="submit">Импорт XML</button>
+        </form>
     </div>
 
     <h2>Связанные данные (JOIN)</h2>
