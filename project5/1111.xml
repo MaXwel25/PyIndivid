@@ -4,6 +4,6 @@
     <name>Керамический сосуд</name>
     <material>Глина</material>
     <find_type>Посуда</find_type>
-    <archaeologist_id>2</archaeologist_id>
+    <archaeologist_id>1</archaeologist_id>
   </artifact>
 </artifacts>

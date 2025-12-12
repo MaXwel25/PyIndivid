@@ -78,21 +78,18 @@ a {
 <body>
     <h1>Археологическая база данных</h1>
     
-    <!-- Сообщения об ошибках при добавлении археолога -->
     {% if archaeologist_error %}
     <div class="message error">
         Ошибка добавления археолога: {{ error_message }}
     </div>
     {% endif %}
 
-    <!-- Сообщения об ошибках при добавлении находки -->
     {% if find_error %}
     <div class="message error">
         Ошибка добавления находки: {{ error_message }}
     </div>
     {% endif %}
     
-    <!-- Сообщения об импорте -->
     {% if import_success %}
     <div class="message success">
         Успешно импортировано {{ imported_count }} артефактов!
@@ -148,8 +145,8 @@ a {
 
     <div class="form-section">
         <h3>Экспорт данных</h3>
-        <a href="/export_xml">Экспорт находок (XML)</a>
-        <h3>Импорт данных (XML)</h3>
+        <a href="/export_xml">Экспорт находок </a>
+        <h3>Импорт данных </h3>
         <form action="/import_xml" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept=".xml" required>
             <button type="submit">Импорт XML</button>
