@@ -4,65 +4,107 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="/static/museum/styles.css">
     <style>
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        h1 { color: #fff; margin-bottom: 30px; }
-        .back-btn { 
-            color: #4dabf7; 
-            text-decoration: none; 
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        
+        .back-btn {
+            color: #3498db;
+            text-decoration: none;
             margin-bottom: 20px;
             display: inline-block;
         }
-        .back-btn:hover { text-decoration: underline; }
-        .form-block { 
-            background-color: #1f1f1f; 
-            border: 1px solid white;
-            padding: 25px;
+        
+        .back-btn:hover {
+            text-decoration: underline;
         }
-        .form-group { margin-bottom: 20px; }
-        label { 
-            display: block; 
-            margin-bottom: 8px; 
-            color: #ccc;
+        
+        .form-block {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
             font-weight: bold;
         }
-        input, textarea, select { 
-            width: 100%; 
-            padding: 10px;
-            background-color: #111111;
-            color: white;
-            border: 1px solid #444;
-            font-family: Arial;
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
         }
-        input:focus, textarea:focus, select:focus { 
+        
+        input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #4dabf7;
+            border-color: #3498db;
         }
-        .error { 
-            color: #ff6b6b; 
-            font-size: 0.9em;
+        
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
             margin-top: 5px;
         }
-        .btn { 
-            background-color: #1f1f1f; 
-            color: white; 
-            padding: 12px 25px; 
-            border: 1px solid white;
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 14px;
             margin-right: 10px;
         }
-        .btn:hover { background-color: #333; }
-        .btn-submit { background-color: #2b8a3e; border-color: #2b8a3e; }
-        .btn-submit:hover { background-color: #2f9e44; }
-        .btn-cancel { 
-            background-color: #111; 
-            color: #ccc;
-            text-decoration: none;
-            padding: 11px 20px;
-            display: inline-block;
+        
+        .btn:hover {
+            background-color: #2980b9;
         }
-        .btn-cancel:hover { background-color: #222; }
-        .form-actions { margin-top: 25px; }
+        
+        .btn-cancel {
+            background-color: #95a5a6;
+            color: white;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 14px;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .form-actions {
+            margin-top: 25px;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +113,7 @@
         
         <h1>{{ title }}</h1>
         
-        <div class="container form-block">
+        <div class="form-block">
             <form method="post">
                 {% csrf_token %}
                 
@@ -83,7 +125,7 @@
                     <div class="error">{{ field.errors }}</div>
                     {% endif %}
                     {% if field.help_text %}
-                    <div style="color: #888; font-size: 0.9em; margin-top: 5px;">
+                    <div style="color: #7f8c8d; font-size: 12px; margin-top: 5px;">
                         {{ field.help_text }}
                     </div>
                     {% endif %}
@@ -91,7 +133,7 @@
                 {% endfor %}
                 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-submit">Сохранить</button>
+                    <button type="submit" class="btn">Сохранить</button>
                     <a href="{% url 'home' %}" class="btn-cancel">Отмена</a>
                 </div>
             </form>

@@ -4,66 +4,116 @@
     <title>{{ exhibition.title }}</title>
     <link rel="stylesheet" href="/static/museum/styles.css">
     <style>
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #fff; margin-bottom: 20px; }
-        .back-btn { 
-            color: #4dabf7; 
-            text-decoration: none; 
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .back-btn {
+            color: #3498db;
+            text-decoration: none;
             margin-bottom: 20px;
             display: inline-block;
         }
-        .back-btn:hover { text-decoration: underline; }
-        .info-block { 
-            background-color: #1f1f1f; 
-            border: 1px solid white;
+        
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+        
+        .info-block {
+            background-color: white;
+            border: 1px solid #ddd;
             padding: 20px;
             margin-bottom: 20px;
+            border-radius: 4px;
         }
-        .info-row { 
-            display: flex; 
-            margin-bottom: 10px;
-            border-bottom: 1px solid #333;
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
             padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
         }
-        .info-label { 
-            width: 150px; 
-            color: #ccc; 
+        
+        .info-label {
+            width: 150px;
+            color: #2c3e50;
             font-weight: bold;
         }
-        .info-value { flex: 1; }
-        .sessions-header { 
-            color: white; 
-            margin: 30px 0 15px 0;
-            padding-bottom: 5px;
-            border-bottom: 1px solid white;
+        
+        .info-value {
+            flex: 1;
         }
-        .session-item { 
-            background-color: #1f1f1f; 
-            border: 1px solid white;
+        
+        .sessions-header {
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 20px;
+        }
+        
+        .session-item {
+            background-color: white;
+            border: 1px solid #ddd;
             padding: 15px;
             margin-bottom: 10px;
+            border-radius: 4px;
         }
-        .session-row { 
-            display: flex; 
+        
+        .session-row {
+            display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        .session-label { color: #ccc; }
-        .no-sessions { 
-            text-align: center; 
-            padding: 20px; 
-            border: 1px dashed white;
-            color: #ccc;
+        
+        .session-label {
+            color: #7f8c8d;
         }
-        .actions { margin-top: 20px; }
-        .actions a { 
-            color: #4dabf7; 
-            text-decoration: none; 
+        
+        .no-sessions {
+            text-align: center;
+            padding: 30px;
+            border: 1px dashed #ddd;
+            color: #7f8c8d;
+            border-radius: 4px;
+        }
+        
+        .actions {
+            margin-top: 20px;
+        }
+        
+        .actions a {
+            color: #3498db;
+            text-decoration: none;
             margin-right: 20px;
         }
-        .actions a:hover { text-decoration: underline; }
-        .full { color: #ff6b6b; }
-        .available { color: #51cf66; }
+        
+        .actions a:hover {
+            text-decoration: underline;
+        }
+        
+        .full {
+            color: #e74c3c;
+        }
+        
+        .available {
+            color: #27ae60;
+        }
     </style>
 </head>
 <body>
