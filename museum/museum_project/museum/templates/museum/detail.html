@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ exhibition.title }}</title>
+    <link rel="stylesheet" href="/static/museum/styles.css">
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #fff; margin-bottom: 20px; }
+        .back-btn { 
+            color: #4dabf7; 
+            text-decoration: none; 
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .back-btn:hover { text-decoration: underline; }
+        .info-block { 
+            background-color: #1f1f1f; 
+            border: 1px solid white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .info-row { 
+            display: flex; 
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .info-label { 
+            width: 150px; 
+            color: #ccc; 
+            font-weight: bold;
+        }
+        .info-value { flex: 1; }
+        .sessions-header { 
+            color: white; 
+            margin: 30px 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid white;
+        }
+        .session-item { 
+            background-color: #1f1f1f; 
+            border: 1px solid white;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .session-row { 
+            display: flex; 
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .session-label { color: #ccc; }
+        .no-sessions { 
+            text-align: center; 
+            padding: 20px; 
+            border: 1px dashed white;
+            color: #ccc;
+        }
+        .actions { margin-top: 20px; }
+        .actions a { 
+            color: #4dabf7; 
+            text-decoration: none; 
+            margin-right: 20px;
+        }
+        .actions a:hover { text-decoration: underline; }
+        .full { color: #ff6b6b; }
+        .available { color: #51cf66; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="back-btn">Назад к списку</a>
+        
+        <h1>{{ exhibition.title }}</h1>
+        
+        <div class="info-block">
+            <div class="info-row">
+                <div class="info-label">Описание:</div>
+                <div class="info-value">{{ exhibition.description }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Дата начала:</div>
+                <div class="info-value">{{ exhibition.date_start }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Дата окончания:</div>
+                <div class="info-value">{{ exhibition.date_end }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Цена билета:</div>
+                <div class="info-value">{{ exhibition.price }} руб.</div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a href="{% url 'edit_exhibition' exhibition.pk %}">Редактировать выставку</a>
+            <a href="{% url 'add_exhibition' %}">Добавить новую выставку</a>
+        </div>
+        
+        <h2 class="sessions-header">Сеансы</h2>
+        
+        {% for session in sessions %}
+        <div class="session-item">
+            <div class="session-row">
+                <div class="session-label">Зал:</div>
+                <div>{{ session.hall.name }}</div>
+            </div>
+            <div class="session-row">
+                <div class="session-label">Дата и время:</div>
+                <div>{{ session.datetime }}</div>
+            </div>
+            <div class="session-row">
+                <div class="session-label">Свободных мест:</div>
+                <div class="{% if session.seats_available == 0 %}full{% else %}available{% endif %}">
+                    {{ session.seats_available }}
+                    {% if session.seats_available == 0 %} (Заполнено){% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-sessions">
+            Нет сеансов для этой выставки
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

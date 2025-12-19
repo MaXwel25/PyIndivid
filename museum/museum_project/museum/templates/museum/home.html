@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Музей</title>
+    <link rel="stylesheet" href="/static/museum/styles.css">
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #fff; text-align: center; margin-bottom: 30px; }
+        .btn { 
+            background-color: #1f1f1f; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border: 1px solid white;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .btn:hover { background-color: #333; }
+        .exhibition-item { 
+            /*background-color: #1f1f1f;*/
+            background-color: rgba(31, 31, 31, 0.5); 
+            border: 1px solid white;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .exhibition-title { 
+            color: white; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+            text-decoration: none;
+        }
+        .exhibition-title:hover { color: #ccc; }
+        .details { 
+            color: #ccc; 
+            font-size: 0.9em; 
+            margin-top: 10px;
+        }
+        .actions { margin-top: 10px; }
+        .actions a { 
+            color: #4dabf7; 
+            text-decoration: none; 
+            margin-right: 15px;
+        }
+        .actions a:hover { text-decoration: underline; }
+        .empty { 
+            text-align: center; 
+            padding: 40px; 
+            border: 1px dashed white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Музейные выставки</h1>
+        
+        <a href="{% url 'add_exhibition' %}" class="btn">Добавить выставку</a>
+        
+        {% for exhibition in exhibitions %}
+        <div class="exhibition-item">
+            <a href="{% url 'exhibition_detail' exhibition.pk %}" class="exhibition-title">
+                {{ exhibition.title }}
+            </a>
+            <hr>
+            <div>{{ exhibition.description|truncatewords:20 }}</div>
+            <div class="details">
+                Даты: {{ exhibition.date_start }} - {{ exhibition.date_end }} | 
+                Цена: {{ exhibition.price }} руб.
+            </div>
+            <div class="actions">
+                <a href="{% url 'exhibition_detail' exhibition.pk %}">Подробнее</a>
+                <a href="{% url 'edit_exhibition' exhibition.pk %}">Редактировать</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="exhibition-item empty">
+            Нет выставок. <a href="{% url 'add_exhibition' %}">Добавить первую</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
