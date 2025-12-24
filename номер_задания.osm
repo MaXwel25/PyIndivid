@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.8.6 (1536947 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="55.7340000" minlon="37.6641000" maxlat="55.7460000" maxlon="37.7040000"/>
+ <node id="60775949" visible="true" version="8" changeset="111816681" timestamp="2021-09-28T12:21:06Z" user="empty_child" uid="13256444" lat="55.7396834" lon="37.6647076">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="both"/>
+ </node>
+ <!-- ... остальной XML ... -->
+</osm>
