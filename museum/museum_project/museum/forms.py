@@ -1,5 +1,5 @@
 from django import forms
-from .models import Exhibition, Session
+from .models import Exhibition, Session, Hall
 
 class ExhibitionForm(forms.ModelForm):
     class Meta:
@@ -17,3 +17,11 @@ class SessionForm(forms.ModelForm):
         widgets = {
             'datetime': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+
+# зал
+class HallForm(forms.ModelForm):
+    class Meta:
+        model = Hall
+        fields = ['name', 'capacity', 'has_projector']
+     
+

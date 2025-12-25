@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ hall.name }}</title>
+</head>
+<body>
+    <h1>{{ hall.name }}</h1>
+    
+    <div>
+        <p><strong>Вместимость:</strong> {{ hall.capacity }} человек</p>
+        <p><strong>Проектор:</strong> {% if hall.has_projector %}Есть{% else %}Нет{% endif %}</p>
+    </div>
+    
+    <a href="{% url 'edit_hall' hall.pk %}">Редактировать</a>
+    <a href="{% url 'hall_list' %}">К списку залов</a>
+    
+    <h2>Сеансы в этом зале:</h2>
+    {% if sessions %}
+        <ul>
+        {% for session in sessions %}
+            <li>
+                <strong>{{ session.exhibition.title }}</strong><br>
+                {{ session.datetime|date:"d.m.Y H:i" }}<br>
+                Свободных мест: {{ session.seats_available }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>В этом зале пока нет сеансов</p>
+    {% endif %}
+</body>
+</html>

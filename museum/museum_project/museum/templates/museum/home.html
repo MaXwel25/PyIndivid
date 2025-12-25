@@ -101,7 +101,8 @@
         <h1>Музейные выставки</h1>
         
         <a href="{% url 'add_exhibition' %}" class="btn">Добавить выставку</a>
-        
+        <a href="{% url 'hall_list' %}" class="back-btn">Перейти к задам</a>
+
         {% for exhibition in exhibitions %}
         <div class="exhibition-item">
             <a href="{% url 'exhibition_detail' exhibition.pk %}" class="exhibition-title">

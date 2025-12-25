@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Залы музея</title>
+</head>
+<body>
+    <h1>Залы музея</h1>
+    <a href="{% url 'add_hall' %}">Добавить новый зал</a>
+    <a href="{% url 'home' %}">На главную</a>
+    
+    <ul>
+    {% for hall in halls %}
+        <li>
+            <h3><a href="{% url 'hall_detail' hall.pk %}">{{ hall.name }}</a></h3>
+            <p>Вместимость: {{ hall.capacity }} человек</p>
+            <p>Проектор: {% if hall.has_projector %}Да{% else %}Нет{% endif %}</p>
+            <a href="{% url 'edit_hall' hall.pk %}">Редактировать</a>
+        </li>
+    {% empty %}
+        <li>Нет доступных залов</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
